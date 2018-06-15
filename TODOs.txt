@@ -1,0 +1,4 @@
+TODO:
+1. actual turn off service functionality
+2. chaos server endpoints for turning off and on the server, changing intervals
+3. chaos middleware endpoint for our chaos server to hit our app server with to tell it which request to turn off or route
