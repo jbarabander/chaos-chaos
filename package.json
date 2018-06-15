@@ -1,6 +1,9 @@
 {
-  "name": "chaos-batman",
+  "name": "chaos-chaos",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
