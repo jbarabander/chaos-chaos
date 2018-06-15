@@ -32,15 +32,15 @@ const createServer = (options) => {
         httpServer.listen(port, () => {
             console.log(`chaos begins... check it out on port ${port} over http`);
             startRunnerIfNeeded();
-        })
-    }
+        });
+    };
     app.https = (port, certs) => {
         addBaseRoutesIfNeeded();
         const httpsServer = https.createServer(certs, app);
         httpsServer.listen(port, () => {
             console.log(`chaos begins... check it out on port ${port} over https`);
             startRunnerIfNeeded();
-        })
-    }
+        });
+    };
     return app;
 }
