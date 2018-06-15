@@ -4,6 +4,7 @@ const router = express.Router();
 
 const configRouter = (state) => {
     router.post('/', (req, res) => {
+        delete req.body.remote;
         mergeState(state, req.body);
         res.sendStatus(201);
     });

@@ -3,7 +3,8 @@ const defaults = {
     downtimeInterval: 1000 * 60 * 5,
     on: true,
     endpoints: [];
-    currentEndpoint: null,
+    currentDisruptedEndpoint: null,
+    remote: null,
 };
 
 isTruthyNumber = (num) => num && typeof num === 'number';
