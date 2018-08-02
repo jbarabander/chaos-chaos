@@ -50,7 +50,7 @@ const createServer = (options) => {
 
     app.chaosRouter = chaosRouter(appState);
     app.configRouter = configRouter(appState);
-    app.runChaos = startRunnerIfNeeded;
+    app.startRunner = startRunnerIfNeeded;
 
     return app;
 }
