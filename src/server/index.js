@@ -25,8 +25,8 @@ const createServer = (options) => {
     }
     const addBaseRoutesIfNeeded = () => {
         if (!baseRoutesHaveBeenAdded) {
-            app.use('/config' configRouter(appState));
-            app.use('/chaos', chaosRouter(appState));
+            app.use('/config' app.configRouter);
+            app.use('/chaos', app.chaosRouter);
             baseRoutesHaveBeenAdded = true;
         }
     }
@@ -47,5 +47,10 @@ const createServer = (options) => {
             startRunnerIfNeeded();
         });
     };
+
+    app.chaosRouter = chaosRouter(appState);
+    app.configRouter = configRouter(appState);
+    app.runChaos = startRunnerIfNeeded;
+
     return app;
 }
