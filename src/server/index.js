@@ -8,7 +8,7 @@ const turnOffEndpoint = require('./turnOffEndpoint');
 const turnOnEndpoint = require('./turnOnEndpoint');
 const endpoints = require('./endpoints');
 const configRouter = require('./routers/config');
-const chaosRouter = require('./routes/chaos');
+const chaosRouter = require('./routers/chaos');
 
 const createServer = (options) => {
     const app = express();
@@ -26,7 +26,7 @@ const createServer = (options) => {
     }
     const addBaseRoutesIfNeeded = () => {
         if (!baseRoutesHaveBeenAdded) {
-            app.use('/config' app.configRouter);
+            app.use('/config', app.configRouter);
             app.use('/chaos', app.chaosRouter);
             baseRoutesHaveBeenAdded = true;
         }
@@ -63,3 +63,5 @@ const createServer = (options) => {
 
     return app;
 }
+
+module.exports = createServer;

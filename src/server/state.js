@@ -31,6 +31,9 @@ const mergeState = (state, options) => {
         state.currentDisruptedEndpoint = options.currentDisruptedEndpoint;
         state.disruptRegex = pathToRegexp(state.currentDisruptedEndpoint);
     }
+    if (typeof options.remote === 'string') {
+        state.remote = options.remote;
+    }
     return state;
 }
 

@@ -8,6 +8,7 @@ const chaosRouter = (state) => {
         }
         return next();
     });
+    return router;
 };
 
 module.exports = chaosRouter;

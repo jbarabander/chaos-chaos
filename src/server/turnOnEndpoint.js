@@ -8,7 +8,8 @@ function turnOnEndpoint(state) {
         body: {
             disruptedEndpoint: null,
             duration: null
-        }
+        },
+        json: true,
     });
 }
 

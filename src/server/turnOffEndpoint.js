@@ -8,7 +8,8 @@ function turnOffEndpoint(state, duration) {
         body: {
             disruptedEndpoint: state.currentDisruptedEndpoint,
             duration
-        }
+        },
+        json: true,
     });
 }
 

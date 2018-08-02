@@ -23,7 +23,8 @@ const configRouter = (state) => {
     router.put('/endpoints', (req, res) => {
         mergeState(state, {endpoints: req.body});
         res.sendStatus(201);
-    })
+    });
+    return router;
 };
 
 module.exports = configRouter;

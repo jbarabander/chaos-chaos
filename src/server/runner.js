@@ -12,7 +12,8 @@ function runner (runStart, runFinish, state) {
         if (state.on) {
             runStart(state, whenToStop)
                 .then(() => finishTask(whenToStop, runFinish))
-                .then(() => runner(runStart, runFinish, state));
+                .then(() => runner(runStart, runFinish, state))
+                .catch(() => { console.log('failed')});
 
         }
     }, whenToRun);
