@@ -6,6 +6,7 @@ const runner = require('./runner');
 const createState = require('./state').create;
 const turnOffEndpoint = require('./turnOffEndpoint');
 const turnOnEndpoint = require('./turnOnEndpoint');
+const endpoints = require('./endpoints');
 const configRouter = require('./routers/config');
 const chaosRouter = require('./routes/chaos');
 
@@ -50,7 +51,15 @@ const createServer = (options) => {
 
     app.chaosRouter = chaosRouter(appState);
     app.configRouter = configRouter(appState);
-    app.startRunner = startRunnerIfNeeded;
+    app.startRunner = () => {
+        const separateFinish = () => {
+            endpoints.clear(appState);
+        }
+        const separateStart = () => {
+            endpoints.pick(appState);
+        }
+        runner(separateStart, separateFinish, appState);
+    };
 
     return app;
 }
