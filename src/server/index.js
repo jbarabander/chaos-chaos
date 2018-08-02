@@ -4,6 +4,8 @@ const https = require('https');
 const bodyParser = require('body-parser');
 const runner = require('./runner');
 const createState = require('./state').create;
+const turnOffEndpoint = require('./turnOffEndpoint');
+const turnOnEndpoint = require('./turnOnEndpoint');
 const configRouter = require('./routers/config');
 const chaosRouter = require('./routes/chaos');
 
@@ -12,9 +14,12 @@ const createServer = (options) => {
     const appState = createState(options);
     let running = false;
     let baseRoutesHaveBeenAdded = false;
+    const runFinish = () => {
+        turnOnEndpoint(appState);
+    }
     const startRunnerIfNeeded = () => {
         if (!running) {
-            runner();
+            runner(turnOffEndpoint, runFinish, appState);
             running = true;
         }
     }

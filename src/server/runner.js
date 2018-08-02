@@ -1,5 +1,4 @@
-function finishTask(downtimeInterval, runStop) {
-    const whenToStop = Math.round(Math.random() * downtimeInterval);
+function finishTask(whenToStop, runStop) {
     const timeoutPromise = new Promise((resolve) => {
         setTimeout(resolve, whenToStop);
     });
@@ -8,11 +7,12 @@ function finishTask(downtimeInterval, runStop) {
 
 function runner (runStart, runFinish, state) {
     const whenToRun = Math.round(Math.random() * state.eventInterval);
+    const whenToStop = Math.round(Math.random() * state.downtimeInterval);
     setTimeout(() => {
         if (state.on) {
-            runStart()
-                .then(() => finishTask(runFinish), state.downtimeInterval)
-                .then(() => runner(runStart, runFinish, state))
+            runStart(state, whenToStop)
+                .then(() => finishTask(whenToStop, runFinish))
+                .then(() => runner(runStart, runFinish, state));
 
         }
     }, whenToRun);

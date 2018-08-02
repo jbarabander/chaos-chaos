@@ -1,8 +1,10 @@
+const pathToRegexp = require('path-to-regexp');
+
 const defaults = {
     eventInterval: 1000 * 60 * 60 * 24 * 7,
     downtimeInterval: 1000 * 60 * 5,
     on: true,
-    endpoints: [];
+    endpoints: [],
     currentDisruptedEndpoint: null,
     remote: null,
 };
@@ -25,6 +27,10 @@ const mergeState = (state, options) => {
     if (typeof options.on === 'boolean') {
         state.on = options.on;
     }
+    if (typeof options.currentDisruptedEndpoint === 'string') {
+        state.currentDisruptedEndpoint = options.currentDisruptedEndpoint;
+        state.disruptRegex = pathToRegexp(state.currentDisruptedEndpoint);
+    }
     return state;
 }
 
@@ -38,5 +44,5 @@ const createState = (options) => {
 
 module.exports = {
     create: createState,
-    merge: mergeState
+    merge: mergeState,
 };
